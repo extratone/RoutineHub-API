@@ -1,26 +1,91 @@
-# David Blue's GitHub Repository Template
-Updated `08092022-233310`
+# RoutineHub API
 
-- [**GitHub**](https://github.com/extratone/latte)
-- [WTF](https://davidblue.wtf/drafts/745BCB94-CE46-4509-A7E0-7566F8DDDF23.html)
-- [WTF Shortlink](https://davidblue.wtf/latte) - `https://davidblue.wtf/latte`
-- [~](https://tilde.town/~extratone/misc/latte)
-- [Things](things:///show?id=8bnNqdTt7bupYXTbmD1SbE)
+## An *unofficial*, amateur attempt at documenting the original RoutineHub API in contemporary formats.
+
+### Postman
+
+(Still not sure I've done this bit right.)
+
+- [Collection](https://documenter.getpostman.com/view/15808119/VUxPu7SH)
+- [API](https://www.postman.com/extratone/workspace/extranet/api/a249de6e-4c37-47a0-b006-b21adc3fb5da)
+
+[**mvan231's repository**](https://github.com/mvan231/RoutineHubDocs) is my singular source. Here's its README, verbatim:
 
 ---
 
-![Cute Git](https://user-images.githubusercontent.com/43663476/117531764-d6064100-afa9-11eb-9e09-783e189abe8e.gif)
+Root URL: `https://routinehub.co/api/v1/`
 
-***Latte*** is a GitHub Repository Template created specifically for use by [David Blue](/DavidBlue.vcf) (that’s me, howdy,) but open to any and all use/misuse/defilement as per [its license](/LICENSE.md).
+All API endpoints are based on the root url. 
 
-To be honest, I’m almost positive the name was really clever but I cannot for the life of me remember what the fuck I meant.
+**Note:** This documentation is for v1 of the API. The new v2 has not been released yet. 
 
-### Contact me for whatever reason
+##### Table of Content
 
-- [Contact Card](https://davidblue.wtf/db.vcf)
-- [Telegram](https://t.me/extratone)
-- [Email](mailto:davidblue@extratone.com) 
-- [Twitter](https://twitter.com/NeoYokel)
-- [Mastodon](https://mastodon.social/@DavidBlue)
-- [Discord](https://discord.gg/0b9KQUKP858b0iZF)
-- [*Everywhere*](https://raindrop.io/davidblue/social-directory-21059174)...
+> * [Shortcut ID](#shortcut-id)
+> * [API Key](#api-key)<br>
+>   * [Key Generation](#key-generation)<br>
+>   * [Revoke Key](#revoke-key)<br>
+>   * [Storage](#storage)<br>
+> * [GET Endpoints](#get-endpoints)<br>
+>   * [List User Shortcuts](#list-user-shortcuts)<br>
+>   * [Get Latest Shortcut Version Info](#get-latest-shortcut-version)<br>
+> * [POST Endpoints](#post-endpoints)<br>
+>   * [Create Shortcut version](#create-shortcut-version)<br>
+>   * [Publish Shortcut](#publish-shortcut)<br>
+>   * [Unpublish Shortcut](#unpublish-shortcut)<br>
+
+## Shortcut ID
+The <shortcut_id> is a numeric ID assigned to the shortcut on the site when a new shortcut is created.
+
+To find this ID after creating the shortcut on RoutineHub, tap/click on the address bar and view the numeric ID value.
+
+Example: https://routinehub.co/shortcut/7388/version/create<br>
+RoutineHub Shortcut ID: 7388
+
+-----
+## API Key
+
+### Key Generation
+Where <api_key> is needed, the user has to generate the key. This can be done from the RoutineHub settings page. 
+
+### Revoke Key
+It is not currently possible to revoke a key, but if you generate a new key, the old key will become invalid 
+
+### Storage
+It is Preferred that this be stored locally to the user's system and not on your servers anywhere.
+
+----
+## GET Endpoints
+
+### List User Shortcuts
+`GET 'api/v1/<api_key>/shortcuts'`
+
+Simply retrieves a list of the user's shortcuts with their IDs and whether it's published or not.
+
+### Get Latest Shortcut Version Info
+`GET 'api/v1/shortcuts/<shortcut_id>/versions/latest'`
+
+Gets the latest version of a shortcut. No api key needed.
+
+-----
+## POST Endpoints
+
+### Create Shortcut version
+`POST 'api/v1/<api_key>/shortcuts/<shortcut_id>/versions/create'`
+
+Creates a new version for a shortcut. 
+
+Parameters:<br>
+'version' : The version number
+'link' : Link to the shortcut on iCloud
+'changes' : List of changes for this version
+
+### Publish Shortcut
+`POST 'api/v1/<api_key>/shortcuts/<shortcut_id>/publish'`
+
+Changes the publish status of a shortcut to True.
+
+### Unpublish Shortcut
+`POST 'api/v1/<api_key>/shortcuts/<shortcut_id>/unpublish'`
+
+Changes the publish status of a shortcut to False.
