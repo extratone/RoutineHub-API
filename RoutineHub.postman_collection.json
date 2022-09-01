@@ -173,6 +173,16 @@
 			"response": []
 		}
 	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{apikey}}",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -196,7 +206,7 @@
 	"variable": [
 		{
 			"key": "apikey",
-			"value": "fd2158ff09f945413c1eba63e056fc467f50451e",
+			"value": "",
 			"type": "string"
 		}
 	]
