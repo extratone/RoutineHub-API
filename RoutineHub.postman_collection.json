@@ -1,0 +1,203 @@
+{
+	"info": {
+		"_postman_id": "dfda8235-51d4-4284-8c07-805ae4fcf95e",
+		"name": "RoutineHub",
+		"description": "# RoutineHubDocs - API\n\nRoot URL: `https://routinehub.co/api/v1/`\n\nAll API endpoints are based on the root url. \n\n**Note:** This documentation is for v1 of the API. The new v2 has not been released yet. \n\n##### Table of Content\n\n> * [Shortcut ID](#shortcut-id)\n> * [API Key](#api-key)<br>\n>   * [Key Generation](#key-generation)<br>\n>   * [Revoke Key](#revoke-key)<br>\n>   * [Storage](#storage)<br>\n> * [GET Endpoints](#get-endpoints)<br>\n>   * [List User Shortcuts](#list-user-shortcuts)<br>\n>   * [Get Latest Shortcut Version Info](#get-latest-shortcut-version)<br>\n> * [POST Endpoints](#post-endpoints)<br>\n>   * [Create Shortcut version](#create-shortcut-version)<br>\n>   * [Publish Shortcut](#publish-shortcut)<br>\n>   * [Unpublish Shortcut](#unpublish-shortcut)<br>\n\n## Shortcut ID\nThe <shortcut_id> is a numeric ID assigned to the shortcut on the site when a new shortcut is created.\n\nTo find this ID after creating the shortcut on RoutineHub, tap/click on the address bar and view the numeric ID value.\n\nExample: https://routinehub.co/shortcut/7388/version/create<br>\nRoutineHub Shortcut ID: 7388\n\n-----\n## API Key\n\n### Key Generation\nWhere <api_key> is needed, the user has to generate the key. This can be done from the RoutineHub settings page. \n\n### Revoke Key\nIt is not currently possible to revoke a key, but if you generate a new key, the old key will become invalid \n\n### Storage\nIt is Preferred that this be stored locally to the user's system and not on your servers anywhere.\n\n----\n## GET Endpoints\n\n### List User Shortcuts\n`GET 'api/v1/<api_key>/shortcuts'`\n\nSimply retrieves a list of the user's shortcuts with their IDs and whether it's published or not.\n\n### Get Latest Shortcut Version Info\n`GET 'api/v1/shortcuts/<shortcut_id>/versions/latest'`\n\nGets the latest version of a shortcut. No api key needed.\n\n-----\n## POST Endpoints\n\n### Create Shortcut version\n`POST 'api/v1/<api_key>/shortcuts/<shortcut_id>/versions/create'`\n\nCreates a new version for a shortcut. \n\nParameters:<br>\n'version' : The version number\n'link' : Link to the shortcut on iCloud\n'changes' : List of changes for this version\n\n### Publish Shortcut\n`POST 'api/v1/<api_key>/shortcuts/<shortcut_id>/publish'`\n\nChanges the publish status of a shortcut to True.\n\n### Unpublish Shortcut\n`POST 'api/v1/<api_key>/shortcuts/<shortcut_id>/unpublish'`\n\nChanges the publish status of a shortcut to False.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15808119"
+	},
+	"item": [
+		{
+			"name": "Get User Shortcuts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://routinehub.co/api/v1/{apikey}/shortcuts",
+					"protocol": "https",
+					"host": [
+						"routinehub",
+						"co"
+					],
+					"path": [
+						"api",
+						"v1",
+						"{apikey}",
+						"shortcuts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Latest Shortcut Version Info",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://routinehub.co/api/v1/{apikey}/shortcuts/{shortcutid}/versions/latest",
+					"protocol": "https",
+					"host": [
+						"routinehub",
+						"co"
+					],
+					"path": [
+						"api",
+						"v1",
+						"{apikey}",
+						"shortcuts",
+						"{shortcutid}",
+						"versions",
+						"latest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Shortcut Version",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://routinehub.co/api/v1/api/v1/{apikey}/shortcuts/{shortcutid}/versions/create?version=&link=&changes=",
+					"protocol": "https",
+					"host": [
+						"routinehub",
+						"co"
+					],
+					"path": [
+						"api",
+						"v1",
+						"api",
+						"v1",
+						"{apikey}",
+						"shortcuts",
+						"{shortcutid}",
+						"versions",
+						"create"
+					],
+					"query": [
+						{
+							"key": "version",
+							"value": ""
+						},
+						{
+							"key": "link",
+							"value": ""
+						},
+						{
+							"key": "changes",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Publish Shortcut",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"url": {
+					"raw": "https://routinehub.co/api/v1/api/v1/{apikey}/shortcuts/{shortcutid}/publish",
+					"protocol": "https",
+					"host": [
+						"routinehub",
+						"co"
+					],
+					"path": [
+						"api",
+						"v1",
+						"api",
+						"v1",
+						"{apikey}",
+						"shortcuts",
+						"{shortcutid}",
+						"publish"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unpublish Shortcut",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"url": {
+					"raw": "https://routinehub.co/api/v1/api/v1/{apikey}/shortcuts/{shortcutid}/unpublish",
+					"protocol": "https",
+					"host": [
+						"routinehub",
+						"co"
+					],
+					"path": [
+						"api",
+						"v1",
+						"api",
+						"v1",
+						"{apikey}",
+						"shortcuts",
+						"{shortcutid}",
+						"unpublish"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "apikey",
+			"value": "fd2158ff09f945413c1eba63e056fc467f50451e",
+			"type": "string"
+		}
+	]
+}
